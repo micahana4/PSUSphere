@@ -47,7 +47,7 @@ class Student(BaseModel):
         blank=True,
         null=True
     )
-    program = models.ForeignKey(Program, on_delete=models.CASCADE)
+    program = models.ForeignKey(Program, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.lastname}, {self.firstname}"
