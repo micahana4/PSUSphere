@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from studentorg.views import HomePageView, OrganizationList, OrganizationCreateView, OrganizationUpdateView, OrganizationDeleteView, StudentList, StudentCreateView, StudentUpdateView, StudentDeleteView, OrgMemberList, OrgMemberCreateView, OrgMemberUpdateView, OrgMemberDeleteView
+from studentorg.views import HomePageView, OrganizationList, OrganizationCreateView, OrganizationUpdateView, OrganizationDeleteView
+from studentorg.views import StudentList, StudentCreateView, StudentUpdateView, StudentDeleteView
+from studentorg.views import OrgMemberList, OrgMemberCreateView, OrgMemberUpdateView, OrgMemberDeleteView
+from studentorg.views import CollegeList, CollegeCreateView, CollegeUpdateView, CollegeDeleteView
 from studentorg import views
 
 urlpatterns = [
@@ -36,4 +39,9 @@ urlpatterns = [
     path('student_list/add', StudentCreateView.as_view(), name="student-add"),
     path('student_list/<pk>', StudentUpdateView.as_view(), name='student-update'),
     path('student_list/<pk>/delete', StudentDeleteView.as_view(), name='student-delete'),
+
+    path('college_list', CollegeList.as_view(), name="college-list"),
+    path('college_list/add', CollegeCreateView.as_view(), name="college-add"),
+    path('college_list/<pk>', CollegeUpdateView.as_view(), name='college-update'),
+    path('college_list/<pk>/delete', CollegeDeleteView.as_view(), name='college-delete'),
 ]
