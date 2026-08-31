@@ -86,6 +86,30 @@ class OrgMemberList(ListView) :
     template_name = 'orgmem_list.html'
     paginate_by = 5
 
+    def get_queryset(self) :
+                qs = super().get_queryset()
+                query = self.request.GET.get('q')
+        
+                if query:
+                    qs = qs.filter(
+                        Q(student__lastname__icontains=query) |
+                        Q(student__firstname__icontains=query) |
+                        Q(student__middlename__icontains=query) |
+                        Q(organization__name__icontains=query) |
+                        Q(date_joined__icontains=query)
+                    )
+        
+                return qs
+            
+    def get_ordering(self):
+            allowed = ["student__lastname", "student__firstname", "student__middlename", "date_joined"]
+            sort_by = self.request.GET.get("sort_by")
+            if sort_by in allowed:
+                return sort_by
+            return ["student__lastname", "student__firstname"]
+
+
+
 class OrgMemberCreateView(CreateView) :
     model = OrgMember
     form_class = OrgMemberForm
