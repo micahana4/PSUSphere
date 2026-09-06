@@ -5,10 +5,6 @@ sqlparse==0.5.5
 typing_extensions==4.16.0
 tzdata==2026.3
 # django-contrib-sites==4.2.30
-allauth==0.51.0
-allauth-account==0.51.0
-allauth-socialaccount==0.51.0
-allauth-socialaccount-providers==0.51.0
-allauth-socialaccount-providers-google==0.51.0
-allauth-socialaccount-providers-github==0.51.0
+# The account and social-provider apps are included in django-allauth.
+django-allauth==0.51.0
 widget-tweaks==1.4.12
