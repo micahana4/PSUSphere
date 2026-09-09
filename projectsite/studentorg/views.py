@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from studentorg.models import Organization, Student, OrgMember, College, Program
 from studentorg.forms import OrganizationForm, StudentForm, OrgMemberForm, CollegeForm, ProgramForm
 from django.urls import reverse_lazy
-from django.db.models import Q
+from django.db.models import Case, IntegerField, Q, When
 from django.utils import timezone
 
 class HomePageView(ListView):   
@@ -15,6 +15,8 @@ class HomePageView(ListView):
     def get_context_data(self, **kwargs) :
         context = super().get_context_data(**kwargs)
         context["total_students"] = Student.objects.count()
+        context["total_organizations"] = Organization.objects.count()
+        context["total_programs"] = Program.objects.count()
 
         today = timezone.now().date()
         count = (
@@ -157,7 +159,15 @@ class StudentList(ListView) :
             sort_by = self.request.GET.get("sort_by")
             if sort_by in allowed:
                 return sort_by
-            return "student_id"
+            return [
+                Case(
+                    When(student_id="2024-8-0104", then=0),
+                    When(student_id="2024-8-0137", then=1),
+                    default=2,
+                    output_field=IntegerField(),
+                ),
+                "student_id",
+            ]
 
 
 class StudentCreateView(CreateView) :

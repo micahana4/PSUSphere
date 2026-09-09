@@ -4,7 +4,7 @@ Faker==37.12.0
 sqlparse==0.5.5
 typing_extensions==4.16.0
 tzdata==2026.3
-django-contrib-sites==4.2.30
+# django-contrib-sites==4.2.30
 allauth==0.51.0
 allauth-account==0.51.0
 allauth-socialaccount==0.51.0

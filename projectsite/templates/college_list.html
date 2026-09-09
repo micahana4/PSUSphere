@@ -48,12 +48,13 @@
                                         <a href="college_list/{{ object.id }}/delete" class="text-danger">Delete</a>
                                     </td>
                                 </tr>
-                                {% endfor %}
+                                {% empty %}
                                 <tr>
-                                    <td colspan="4" style="text-align: center">
+                                    <td colspan="2" style="text-align: center">
                                         <p class="text-sm font-weight-bold mb-0">No Records Found</p>
                                     </td>
                                 </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                         {% include 'includes/pagination.html'%}
